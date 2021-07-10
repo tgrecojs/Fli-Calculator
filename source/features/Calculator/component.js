@@ -63,8 +63,9 @@ const Calculator = ({
   }
   return (
     <div
-      className="flex flex-wrap max-w-md sm:w-full justify-around items-center bg-purple-400 border-8 border-black
-      rounded-md m-1"
+      className="flex flex-wrap max-w-md sm:w-full justify-around items-center bg-bubble bg-opacity-20
+       border-5 border-index2
+      rounded-3xl m-1"
     >
       {/* <h4>Current price:{findPrice(priceData)}</h4> */}
       <form

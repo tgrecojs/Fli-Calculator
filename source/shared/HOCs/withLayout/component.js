@@ -10,10 +10,10 @@ const WithLayout = (ComposedComponent) => {
       </Head>
       <div className="relative min-h-screen md:flex">
         {/* <!-- mobile menu bar --> */}
-        <div className="bg-gray-800 text-gray-100 flex justify-between md:hidden">
+        <div className="bg-index3 text-gray-500 flex justify-between md:hidden">
           {/* <!-- logo --> */}
           <Link href="/">
-            <a className="block p-4 text-white font-bold">FLI Dashboard</a>
+            <a className="block p-4 font-bold">FLI Dashboard</a>
           </Link>
           {/* <!-- mobile menu button --> */}
           <button
@@ -78,7 +78,8 @@ const WithLayout = (ComposedComponent) => {
           </nav>
         </div>
         {/* <!-- content --> */}
-        <div className="flex flex-col items-center w-full">
+        <div className="flex flex-col items-center w-full bg-cover 
+        bg-gradient-to-l from-index via-index2 to-index3 bg-opacity-90">
           <ComposedComponent {...rest} />
         </div>
       </div>
