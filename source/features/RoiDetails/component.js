@@ -4,16 +4,12 @@ import { useSelector } from 'react-redux'
 const fixedNum = (x) => x.toFixed(2)
 const capitliaze = (str) => ''.concat(str[0].toUpperCase(), str.slice(1))
 
-const RoiDetails = ({
-  fliStrategy = 'eth',
-  fliIndexLogo = 'https://set-core.s3.amazonaws.com/img/portfolios/eth2x_fli.svg'
-}) => {
+const RoiDetails = () => {
   const roiResult = useSelector((s) => s.calculatorState.roiResult)
   const tokenData = useSelector((s) => s.calculatorState.tokenData)
   const volDecayStats = useSelector((s) => s.calculatorState.volDecayStats)
   const calculatorState = useSelector((s) => s.calculatorState)
 
-  const { volDecay, roiWithDecay } = volDecayStats
   return (
     <>
       <div className="flex flex-col items-center w-full m-2">
@@ -64,12 +60,13 @@ const RoiDetails = ({
             </div>
             <div className="m-2 p-4 flex flex-col">
               <h3 className="text-xl">
-                Underlying Token ({Object.entries(calculatorState.tokenData)[0]}
-                )
+                {calculatorState.fliTokenStrategy.toUpperCase()}
               </h3>
               <p>
                 Investment Value at End: $
-                {roiResult.tokenRoi + calculatorState.initialInvestment}
+                {fixedNum(
+                  roiResult.tokenRoi + calculatorState.initialInvestment
+                )}
                 <br />
               </p>
               <p> ROI Percent: {calculatorState.percentChange}%</p>

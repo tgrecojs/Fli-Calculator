@@ -1,6 +1,6 @@
 import { call, takeLatest, put } from 'redux-saga/effects'
 import { fetchData, reportSuccess, reportError } from './reducer'
-import { setTokenData } from '../Calculator/reducer'
+import { setFliTokenStrategy, setTokenData } from '../Calculator/reducer'
 import { fetchCoingeckoData, currentPrice } from '../../shared/APIs'
 
 const map = {
@@ -24,7 +24,11 @@ function* fetchTokenDataSaga(action) {
     )
     const response = yield call(
       fetchCoingeckoData,
-      currentPrice(`${map[payload].underlying},${map[payload].fli}`)
+      currentPrice(
+        `${map[payload.toLowerCase()].underlying},${
+          map[payload.toLowerCase()].fli
+        }`
+      )
     )
     yield put(reportSuccess(response))
   } catch (error) {
@@ -38,5 +42,6 @@ function* handleSuccessSaga(action) {
 }
 export default function* fetchTokenWatcher() {
   yield takeLatest(fetchData().type, fetchTokenDataSaga)
+  yield takeLatest(setFliTokenStrategy().type, fetchTokenDataSaga)
   yield takeLatest(reportSuccess().type, handleSuccessSaga)
 }

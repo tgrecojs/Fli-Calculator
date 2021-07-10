@@ -67,7 +67,7 @@ const WithLayout = (ComposedComponent) => {
           <nav>
             <Link href="/" shallow={true}>
               <a className="block py-2.5 px-4 rounded transition duration-200 hover:bg-purple-700 hover:text-white">
-                ETH2x-FLI
+                Home{' '}
               </a>
             </Link>
             {/* <Link href="/chart" shallow={true}>

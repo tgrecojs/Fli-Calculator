@@ -28,7 +28,7 @@ const initialState = (initialState = defaultState) => {
     ...createStore(
       rootReducer,
       initialState,
-      applyMiddleware(...[logger, sagaMiddleware])
+      applyMiddleware(...[sagaMiddleware])
     ),
     runSaga: sagaMiddleware.run(rootSaga)
   }

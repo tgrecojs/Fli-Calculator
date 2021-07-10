@@ -2,7 +2,6 @@ import React from 'react'
 import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
 import 'tailwindcss/tailwind.css'
-import '../css/index.css'
 
 function MyApp({ Component, pageProps, reduxStore }) {
   return (

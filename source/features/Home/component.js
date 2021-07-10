@@ -1,51 +1,41 @@
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  getVolatilityDecayState,
-  fetchHistoricalData,
-  setShowTable
-} from './reducer'
-import HistoricalPriceData from '../HistoricalPriceData/component'
 import { useEffect, useState } from 'react'
+import { fetchData } from '../RoiDetails/reducer'
 
 import RoiDetails from '../RoiDetails/component'
+import { setFliTokenStrategy } from '../Calculator/reducer'
+import { compose } from 'redux'
+import FliStrategySelectBox from '../FLIStrategySelectInput/component'
 const unbox = (x) => {
   const [data] = x
-  return x
+  return data
 }
 
 const trace = (label) => (val) => {
   console.log(`${label}::`, val)
   return val
 }
-const Volatility = ({ defaultUnderlyingToken = 'eth', ...props }) => {
+const Volatility = ({ props }) => {
   console.log('inside Home component:::::', props)
   const dispatch = useDispatch()
-  const [underlyingToken, setUnderlyingToken] = useState(
-    unbox(defaultUnderlyingToken)
-  )
+  const onSetFliSelection = compose(dispatch, setFliTokenStrategy)
+  const underlyingToken = useSelector((s) => s.calculatorState.fliTokenStrategy)
+
   const onSetUnderlyingToken = (value = {}) => {
-    setUnderlyingToken(value)
+    onSetFliSelection(value)
     return underlyingToken
   }
   useEffect(() => {
-    dispatch(fetchHistoricalData(underlyingToken))
-  }, [underlyingToken])
-
-  useEffect(() => props.onFetchCurrentPrice(underlyingToken))
+    fetchData(underlyingToken)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
-      <label>Change Underlying Token</label>
-      <select
-        defaultValue={defaultUnderlyingToken}
-        onChange={(e) => onSetUnderlyingToken(e.target.value)}
-      >
-        <option value="eth" selected={underlyingToken[0] === 'eth'}>
-          ETH
-        </option>
-
-        <option value="btc">BTC</option>
-      </select>
+      <FliStrategySelectBox
+        onChange={onSetUnderlyingToken}
+        underlyingToken={underlyingToken}
+      />
       <RoiDetails />
     </>
   )

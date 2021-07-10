@@ -9,7 +9,8 @@ import {
 import { fetchCoingeckoData } from '../../shared/APIs'
 import { makeRangeUrl, aggregateReducer } from '../../shared/utils'
 import { buildVolDecayStats } from '../../shared/utils/volatility-decay'
-import { setVolDecayStats } from '../Calculator/reducer'
+import { setFliTokenStrategy, setVolDecayStats } from '../Calculator/reducer'
+import { fetchData } from '../RoiDetails/reducer'
 const map = {
   eth: {
     underlying: 'ethereum',
@@ -63,7 +64,9 @@ function* handleVolDecayCalculation(action) {
 }
 
 export default function* fetchTokenWatcher() {
-  yield takeLatest(fetchHistoricalData().type, fetchTokenDataSaga)
+  yield takeLatest(fetchData().type, fetchTokenDataSaga)
+  yield takeLatest(setFliTokenStrategy().type, fetchTokenDataSaga)
+
   yield takeLatest(reportSuccess().type, handleHistoricalDataSaga)
   yield takeLatest(setHistoricalData().type, handleVolDecayCalculation)
 }

@@ -1,4 +1,4 @@
-import { string, array } from 'prop-types'
+import { string, array, number } from 'prop-types'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 import RoiDetails from '../RoiDetails/component'
@@ -12,14 +12,12 @@ import {
   getLeverageRatio,
   getInitialInvestment,
   getPercentChange,
-  getVolDecayStats,
   getHoldingPeriod,
   setHoldingPeriod
 } from './reducer'
 // prop :: (String | Number) -> Object -> Result String a
 
 const Calculator = ({
-  fliIndexLogo = 'https://set-core.s3.amazonaws.com/img/portfolios/eth2x_fli.svg',
   // eslint-disable-next-line no-unused-vars
   fliTokenOptions = ['ETH', 'BTC'],
   annualizedVolPercent = 0
@@ -165,6 +163,7 @@ const Calculator = ({
 }
 
 Calculator.propTypes = {
+  annualizedVolPercent: number,
   fliTokenOptions: array,
   fliIndexLogo: string
 }
