@@ -15,8 +15,9 @@ import {
   getHoldingPeriod,
   setHoldingPeriod
 } from './reducer'
+import FliStrategySelectBox from '../FLIStrategySelectInput/component'
 // prop :: (String | Number) -> Object -> Result String a
-
+FliStrategySelectBox
 const Calculator = ({
   // eslint-disable-next-line no-unused-vars
   fliTokenOptions = ['ETH', 'BTC'],
@@ -67,10 +68,11 @@ const Calculator = ({
     >
       {/* <h4>Current price:{findPrice(priceData)}</h4> */}
       <form
-        className="flex flex-col items-center w-11/12"
+        className="flex flex-col w-11/12 text-center"
         onSubmit={calculateReturn}
       >
         <h2 className="text-2xl text-center p-4">FLI Token ROI Calculator</h2>
+        <FliStrategySelectBox onChange={() => {}} className ="text-center" />
         <div className="bg-purple-200 p-4 border-3 rounded">
           <h4>
             Annualized Volatility: <b>{annualizedVolPercent.toFixed(2)}%</b>
@@ -148,10 +150,10 @@ const Calculator = ({
           />
         </label>
         <button
-          className="p-4 m-2 text-black bg-purple-200
+          className="p-4 m-2 text-white bg-grape
           transition duration-500 ease-in-out
-          border-solid rounded w-3/4
-          hover:scale-75
+          border-solid rounded-full w-3/4
+          hover:scale-75 self-center
           "
           type="submit"
         >

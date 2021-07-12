@@ -11,7 +11,7 @@ const FliStrategySelectBox = ({ underlyingToken = 'eth', onChange }) => {
   console.log({ underlyingToken })
   return (
     <>
-      <label>Change Underlying Token</label>
+      <label className= 'text-2xl'>Change Underlying Token</label>
       <select
         defaultValue={underlyingToken}
         onChange={(e) => onChange(e.target.value)}

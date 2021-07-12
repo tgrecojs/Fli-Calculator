@@ -1,3 +1,4 @@
+
 const colors = require('tailwindcss/colors')
 module.exports = {
   mode: 'jit',
@@ -5,7 +6,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      body: ['"Cabin",sans-serif']
+      body: ['"Aeonik",sans-serif']
     },
     extend: {
       colors: {
@@ -25,8 +26,11 @@ module.exports = {
           DEFAULT: '#f0e7ea',
         },
         bubble: {
-          DEFAULT:'#8D7C86'}
-        }
+          DEFAULT:'#8D7C86'},
+        grape: {
+            DEFAULT: '#3340fa'
+          },
+        },
     },
   plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')]
   }

@@ -32,10 +32,10 @@ const Volatility = ({ props }) => {
 
   return (
     <>
-      <FliStrategySelectBox
+      {/* <FliStrategySelectBox
         onChange={onSetUnderlyingToken}
         underlyingToken={underlyingToken}
-      />
+      /> */}
       <RoiDetails />
     </>
   )
